@@ -104,9 +104,12 @@ def make_index_matrix(
 @boundscheck(False)  
 @wraparound(False)
 @cdivision(True)
-def count_clusts(np.ndarray[STEP_t, ndim=2] _idx_mtx,
-                 int num_strats,
-                 int n):
+def count_clusts(
+    np.ndarray[STEP_t, ndim=1] _strat_array,
+    np.ndarray[STEP_t, ndim=1] _clust_array,
+    int num_strats,
+    int n
+    ):
     """The index matrix has data as follows:
 
     0: strat_idx
@@ -124,20 +127,21 @@ def count_clusts(np.ndarray[STEP_t, ndim=2] _idx_mtx,
     cdef np.ndarray[STEP_t, ndim=1, mode="c"] _out = np.empty(num_strats, dtype=np.int32, order="C")
     cdef int* out = <int*>(np.PyArray_DATA(_out))
     
-    cdef int* idx_mtx = <int*>(np.PyArray_DATA(_idx_mtx))
+    cdef int* strat_array = <int*>(np.PyArray_DATA(_strat_array))
+    cdef int* clust_array = <int*>(np.PyArray_DATA(_clust_array))
     
     cdef int i, acc = 0, clust_acc = 0
     
-    cdef double prev_strat_idx = _idx_mtx[0, 0]
-    cdef double prev_clust_idx = _idx_mtx[0, 1]
+    cdef double prev_strat_idx = strat_array[0]
+    cdef double prev_clust_idx = clust_array[0]
     
     for i in range(n):
         
-        if idx_mtx[i*5+1] != prev_clust_idx:
+        if clust_array[i] != prev_clust_idx:
             
             clust_acc += 1
         
-        if idx_mtx[i*5] != prev_strat_idx:
+        if strat_array[i] != prev_strat_idx:
             
             out[acc] = clust_acc
             
@@ -146,8 +150,8 @@ def count_clusts(np.ndarray[STEP_t, ndim=2] _idx_mtx,
             clust_acc = 0
             acc += 1
             
-        prev_strat_idx = idx_mtx[i*5]
-        prev_clust_idx = idx_mtx[i*5 + 1]
+        prev_strat_idx = strat_array[i]
+        prev_clust_idx = clust_array[i]
         
     out[acc] = clust_acc + 1
             
