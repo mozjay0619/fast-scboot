@@ -12,7 +12,7 @@ class Sampler:
         
         pass
     
-    def prepare_data(self, data, stratify_columns, cluster_column, num_clusts):
+    def prepare_data(self, data, stratify_columns, cluster_column, num_clusts=None):
         
         self.num_clusts = num_clusts
         
@@ -71,13 +71,20 @@ class Sampler:
         assert len(self.idx_mtx) == len(self.strat_arr) == len(self.clust_arr)
         self.len_idxs = len(self.idx_mtx)
         
-        # set up cache
+        # Set up caches
         self.idx_mtx_placeholder = np.empty([self.len_idxs, 3]).astype(np.int32)
         self.strat_arr_placeholder = np.empty(self.len_idxs).astype(np.int32)
         self.clust_arr_placeholder = np.empty(self.len_idxs).astype(np.int32)
         
-        # Expi particular codes
+        # Make it an explicit requirement that the cluster values draw from the same range
+        # for each stratum.
         testable_clust_values = self.data[cluster_column].unique()
+
+        # The cluster value that we can start to sample from. If ``num_clusts`` is set
+        # to None, then we assume that we will sample from all of available cluster values.
+        if self.num_clusts is None:
+            self.num_clusts = len(testable_clust_values)
+
         self.test_startable_clust_values = testable_clust_values[:-self.num_clusts+1]
         
         self.data_arr = np.ascontiguousarray(data.values)
@@ -88,6 +95,8 @@ class Sampler:
         
         test_start_clust_value = rng.choice(self.test_startable_clust_values)
         test_end_clust_value = test_start_clust_value + self.num_clusts - 1
+
+    # def sample_data(self, test_start_clust_value, test_end_clust_value):
         
         idx_mtx, strat_arr, clust_arr = inplace_ineq_filter(
             self.idx_mtx,
