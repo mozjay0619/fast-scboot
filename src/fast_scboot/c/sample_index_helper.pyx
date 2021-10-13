@@ -43,6 +43,12 @@ def make_index_matrix(
     
     cdef np.ndarray[STEP_t, ndim=2, mode="c"] _idx_mtx = np.empty([num_clusts, 5], dtype=np.int32, order="C")
     cdef int* idx_mtx = <int*>(np.PyArray_DATA(_idx_mtx))
+
+    cdef np.ndarray[STEP_t, ndim=1, mode="c"] _strat_array = np.empty(num_clusts, dtype=np.int32, order="C")
+    cdef int* strat_array = <int*>(np.PyArray_DATA(_strat_array))
+
+    cdef np.ndarray[STEP_t, ndim=1, mode="c"] _clust_array = np.empty(num_clusts, dtype=np.int32, order="C")
+    cdef int* clust_array = <int*>(np.PyArray_DATA(_clust_array))
     
     cdef int i, j
     
@@ -66,6 +72,9 @@ def make_index_matrix(
         cur_clust_val = data[i, 2]
         
         if cur_clust_idx != prev_clust_idx:
+
+            strat_array[pos] = prev_strat_idx
+            clust_array[pos] = prev_clust_idx
             
             idx_mtx[pos] = prev_strat_idx
             idx_mtx[pos+1] = prev_clust_idx
@@ -80,13 +89,16 @@ def make_index_matrix(
         prev_clust_idx = cur_clust_idx
         prev_clust_val = cur_clust_val
 
+    strat_array[pos] = prev_strat_idx
+    clust_array[pos] = prev_clust_idx
+
     idx_mtx[pos] = prev_strat_idx
     idx_mtx[pos+1] = prev_clust_idx
     idx_mtx[pos+2] = prev_clust_val
     idx_mtx[pos+3] = start_idx
     idx_mtx[pos+4] = i - start_idx + 1
 
-    return _idx_mtx
+    return _idx_mtx, _strat_array, _clust_array
 
 
 @boundscheck(False)  
