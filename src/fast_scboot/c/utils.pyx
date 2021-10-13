@@ -83,28 +83,51 @@ def fancy_indexer(np.ndarray[DOUBLE_t, ndim=2] _a,
 @boundscheck(False)  
 @wraparound(False)
 @cdivision(True)
-def inplace_ineq_filter(np.ndarray[STEP_t, ndim=2] _a, 
-                        np.ndarray[STEP_t, ndim=2] _out, 
+def inplace_ineq_filter(np.ndarray[STEP_t, ndim=2] _idx_mtx, 
+                        np.ndarray[STEP_t, ndim=2] _idx_mtx_placeholder, 
+
+                        np.ndarray[STEP_t, ndim=1] _strat_arr, 
+                        np.ndarray[STEP_t, ndim=1] _strat_arr_placeholder,
+
+                        np.ndarray[STEP_t, ndim=1] _clust_arr, 
+                        np.ndarray[STEP_t, ndim=1] _clust_arr_placeholder,
+
                         int low_inc,
                         int high_inc,
                         int n):
     
-    cdef int* a = <int*>(np.PyArray_DATA(_a))
-    cdef int* out = <int*>(np.PyArray_DATA(_out))
+    cdef int* idx_mtx = <int*>(np.PyArray_DATA(_idx_mtx))
+    cdef int* idx_mtx_placeholder = <int*>(np.PyArray_DATA(_idx_mtx_placeholder))
+
+    cdef int* strat_arr = <int*>(np.PyArray_DATA(_strat_arr))
+    cdef int* strat_arr_placeholder = <int*>(np.PyArray_DATA(_strat_arr_placeholder))
+
+    cdef int* clust_arr = <int*>(np.PyArray_DATA(_clust_arr))
+    cdef int* clust_arr_placeholder = <int*>(np.PyArray_DATA(_clust_arr_placeholder))
     
     cdef int i, j, val, acc = 0
     
     for i in range(n):
         
-        val = a[i*5 + 2]
+        val = idx_mtx[i*3]
         
         if (low_inc <= val) & (val <= high_inc):
 
-            for j in range(5):
+            for j in range(3):
                 
-                out[acc*5 + j] = a[i*5 + j]
+                idx_mtx_placeholder[acc*3 + j] = idx_mtx[i*3 + j]
+
+            strat_arr_placeholder[acc] = strat_arr[i]
+            clust_arr_placeholder[acc] = clust_arr[i]
         
             acc += 1
 
-    return _out[0:acc]
+    return _idx_mtx_placeholder[0:acc], _strat_arr_placeholder[0:acc], _clust_arr_placeholder[0:acc]
+
+
+
+
+
+
+
 

@@ -41,7 +41,7 @@ def make_index_matrix(
     cdef int n = data.shape[0]
     cdef int p = data.shape[1]
     
-    cdef np.ndarray[STEP_t, ndim=2, mode="c"] _idx_mtx = np.empty([num_clusts, 5], dtype=np.int32, order="C")
+    cdef np.ndarray[STEP_t, ndim=2, mode="c"] _idx_mtx = np.empty([num_clusts, 3], dtype=np.int32, order="C")
     cdef int* idx_mtx = <int*>(np.PyArray_DATA(_idx_mtx))
 
     cdef np.ndarray[STEP_t, ndim=1, mode="c"] _strat_array = np.empty(num_clusts, dtype=np.int32, order="C")
@@ -76,13 +76,11 @@ def make_index_matrix(
             strat_array[pos] = prev_strat_idx
             clust_array[pos] = prev_clust_idx
             
-            idx_mtx[pos] = prev_strat_idx
-            idx_mtx[pos+1] = prev_clust_idx
-            idx_mtx[pos+2] = prev_clust_val
-            idx_mtx[pos+3] = start_idx
-            idx_mtx[pos+4] = i - start_idx
+            idx_mtx[pos*3] = prev_clust_val
+            idx_mtx[pos*3 + 1] = start_idx
+            idx_mtx[pos*3 + 2] = i - start_idx
             
-            pos += 5
+            pos += 1
             start_idx = i
             
         prev_strat_idx = cur_strat_idx
@@ -92,11 +90,9 @@ def make_index_matrix(
     strat_array[pos] = prev_strat_idx
     clust_array[pos] = prev_clust_idx
 
-    idx_mtx[pos] = prev_strat_idx
-    idx_mtx[pos+1] = prev_clust_idx
-    idx_mtx[pos+2] = prev_clust_val
-    idx_mtx[pos+3] = start_idx
-    idx_mtx[pos+4] = i - start_idx + 1
+    idx_mtx[pos*3] = prev_clust_val
+    idx_mtx[pos*3 + 1] = start_idx
+    idx_mtx[pos*3 + 2] = i - start_idx + 1
 
     return _idx_mtx, _strat_array, _clust_array
 
@@ -226,13 +222,13 @@ def get_sampled_indices(
     cdef np.ndarray[STEP_t, ndim=1, mode="c"] _out = np.empty(n, dtype=np.int32, order="C")
     cdef int* out = <int*>(np.PyArray_DATA(_out))
 
-    cdef np.ndarray[STEP_t, ndim=1, mode="c"] _clust_idx = np.empty(n, dtype=np.int32, order="C")
-    cdef int* clust_idx = <int*>(np.PyArray_DATA(_clust_idx))
+    cdef np.ndarray[STEP_t, ndim=1, mode="c"] _updated_clust_idx = np.empty(n, dtype=np.int32, order="C")
+    cdef int* updated_clust_idx = <int*>(np.PyArray_DATA(_updated_clust_idx))
     
     cdef int i, j, k, s, start_idx, nrows, mtx_idx, out_idx = 0
     cdef int clust_size, clust_size_acc = 0
 
-    cdef int clust_idx_acc = 0
+    cdef int updated_clust_idx_acc = 0
     
     for i in range(num_strats):
         
@@ -244,22 +240,22 @@ def get_sampled_indices(
             
             mtx_idx = clust_size_acc + s
             
-            start_idx = idx_mtx[mtx_idx*5 + 3]
-            nrows = idx_mtx[mtx_idx*5 + 4]
+            start_idx = idx_mtx[mtx_idx*3 + 1]
+            nrows = idx_mtx[mtx_idx*3 + 2]
             
             for k in range(nrows):
 
-                clust_idx[out_idx] = clust_idx_acc
+                updated_clust_idx[out_idx] = updated_clust_idx_acc
                 
                 out[out_idx] = start_idx + k
                 out_idx += 1
 
-            clust_idx_acc += 1
+            updated_clust_idx_acc += 1
 
-        clust_idx_acc = 0
+        updated_clust_idx_acc = 0
         clust_size_acc += clust_size
         
-    return _out[0:out_idx], _clust_idx[0:out_idx]
+    return _out[0:out_idx], _updated_clust_idx[0:out_idx]
     
 
 
