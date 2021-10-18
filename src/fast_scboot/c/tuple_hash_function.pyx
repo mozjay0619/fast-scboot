@@ -1,10 +1,10 @@
-from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil
+from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound
 
 import numpy as np
-cimport numpy as np
-np.import_array()
 
-ctypedef np.npy_float64 DOUBLE_t
+cimport numpy as np
+
+np.import_array()
 
 DTYPE = np.float64
 
@@ -81,3 +81,22 @@ def hash_tuple(np.ndarray[DOUBLE_t, ndim=2] _a, int n, int p):
         
     return _b
 
+
+@boundscheck(False)  
+@wraparound(False)
+@cdivision(True)
+def hash_tuple_2d(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] _b, int n):
+
+    cdef int i
+    
+    cdef double* a = <double*>(np.PyArray_DATA(_a))
+    cdef double* b = <double*>(np.PyArray_DATA(_b))
+
+    cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _c = np.empty(n, dtype=DTYPE, order="C")
+    cdef double* c = <double*>(np.PyArray_DATA(_c))
+
+    for i in range(n):
+
+        c[i] = 0.5 * (a[i] + b[i]) * (a[i] + b[i] + 1) + b[i]
+
+    return _c

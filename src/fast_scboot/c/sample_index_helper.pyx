@@ -1,7 +1,9 @@
-from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil
+from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound
 
 import numpy as np
+
 cimport numpy as np
+
 np.import_array()
 
 ctypedef np.npy_int32 STEP_t
@@ -256,11 +258,3 @@ def get_sampled_indices(
         clust_size_acc += clust_size
         
     return _out[0:out_idx], _updated_clust_idx[0:out_idx]
-    
-
-
-
-
-
-
-

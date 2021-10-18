@@ -1,4 +1,7 @@
+import tempfile
+
 import numpy as np
+
 
 def rng_generator(seed=None, n=1):
     """Numpy random Generator generator.
@@ -97,4 +100,43 @@ def get_unique_combinations(a):
 
     return np.sum(new_indices * multiplier, axis=1)
 
-    
+
+def write_memmap(metadata, array):
+
+    writable_memmap = np.memmap(
+        metadata["filepath"],
+        dtype=metadata["dtype"],
+        shape=metadata["shape"],
+        mode="w+",
+    )
+
+    writable_memmap[:] = array[:]
+    del writable_memmap
+
+
+def read_memmap(metadata, idx=None):
+
+    readonly_memmap = np.memmap(
+        metadata["filepath"],
+        dtype=metadata["dtype"],
+        shape=metadata["shape"],
+        mode="r",
+    )
+
+    if idx is None:
+        array = readonly_memmap[:]
+    else:
+        if is_nested_list(idx):
+            array = readonly_memmap[tuple(idx)]
+        else:
+            array = readonly_memmap[idx]
+
+    del readonly_memmap
+    return array
+
+
+def record_memmap_metadata(d, array):
+
+    d["shape"] = array.shape
+    d["dtype"] = str(array.dtype)
+    d["filepath"] = tempfile.TemporaryFile()

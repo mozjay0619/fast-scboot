@@ -1085,12 +1085,12 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "fast_scboot/c/tuple_hash_function.pyx":7
- * np.import_array()
+/* "fast_scboot/c/tuple_hash_function.pxd":4
+ * cimport numpy as np
  * 
  * ctypedef np.npy_float64 DOUBLE_t             # <<<<<<<<<<<<<<
  * 
- * DTYPE = np.float64
+ * cdef double cantor2(double a, double b)
  */
 typedef npy_float64 __pyx_t_11fast_scboot_1c_19tuple_hash_function_DOUBLE_t;
 /* Declarations.proto */
@@ -1591,6 +1591,9 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 /* CheckBinaryVersion.proto */
 static int __Pyx_check_binary_version(void);
 
+/* FunctionExport.proto */
+static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig);
+
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
@@ -1650,12 +1653,14 @@ static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_C[] = "C";
 static const char __pyx_k_a[] = "_a";
 static const char __pyx_k_b[] = "_b";
+static const char __pyx_k_c[] = "_c";
 static const char __pyx_k_i[] = "i";
 static const char __pyx_k_n[] = "n";
 static const char __pyx_k_p[] = "p";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_a_2[] = "a";
 static const char __pyx_k_b_2[] = "b";
+static const char __pyx_k_c_2[] = "c";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
@@ -1669,6 +1674,7 @@ static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_float64[] = "float64";
 static const char __pyx_k_hash_tuple[] = "hash_tuple";
 static const char __pyx_k_ImportError[] = "ImportError";
+static const char __pyx_k_hash_tuple_2dF[] = "hash_tuple_2dF";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_fast_scboot_c_tuple_hash_functio[] = "fast_scboot.c.tuple_hash_function";
@@ -1681,12 +1687,15 @@ static PyObject *__pyx_n_s_a;
 static PyObject *__pyx_n_s_a_2;
 static PyObject *__pyx_n_s_b;
 static PyObject *__pyx_n_s_b_2;
+static PyObject *__pyx_n_s_c;
+static PyObject *__pyx_n_s_c_2;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_empty;
 static PyObject *__pyx_n_s_fast_scboot_c_tuple_hash_functio;
 static PyObject *__pyx_n_s_float64;
 static PyObject *__pyx_n_s_hash_tuple;
+static PyObject *__pyx_n_s_hash_tuple_2dF;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_main;
@@ -1702,10 +1711,13 @@ static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_kp_s_src_fast_scboot_c_tuple_hash_fun;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_pf_11fast_scboot_1c_19tuple_hash_function_hash_tuple(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v__a, int __pyx_v_n, int __pyx_v_p); /* proto */
+static PyObject *__pyx_pf_11fast_scboot_1c_19tuple_hash_function_2hash_tuple_2dF(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v__a, PyArrayObject *__pyx_v__b, int __pyx_v_n); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
+static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_codeobj__4;
+static PyObject *__pyx_codeobj__6;
 /* Late includes */
 
 /* "fast_scboot/c/tuple_hash_function.pyx":15
@@ -2219,6 +2231,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_19tuple_hash_function_hash_tuple(CYTH
  * 
  *     return _b             # <<<<<<<<<<<<<<
  * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v__b));
@@ -2254,6 +2267,287 @@ static PyObject *__pyx_pf_11fast_scboot_1c_19tuple_hash_function_hash_tuple(CYTH
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__b.rcbuffer->pybuffer);
   __pyx_L2:;
   __Pyx_XDECREF((PyObject *)__pyx_v__b);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "fast_scboot/c/tuple_hash_function.pyx":88
+ * @wraparound(False)
+ * @cdivision(True)
+ * def hash_tuple_2dF(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] _b, int n):             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11fast_scboot_1c_19tuple_hash_function_3hash_tuple_2dF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11fast_scboot_1c_19tuple_hash_function_3hash_tuple_2dF = {"hash_tuple_2dF", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11fast_scboot_1c_19tuple_hash_function_3hash_tuple_2dF, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11fast_scboot_1c_19tuple_hash_function_3hash_tuple_2dF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyArrayObject *__pyx_v__a = 0;
+  PyArrayObject *__pyx_v__b = 0;
+  int __pyx_v_n;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("hash_tuple_2dF (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_a,&__pyx_n_s_b,&__pyx_n_s_n,0};
+    PyObject* values[3] = {0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("hash_tuple_2dF", 1, 3, 3, 1); __PYX_ERR(0, 88, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_n)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("hash_tuple_2dF", 1, 3, 3, 2); __PYX_ERR(0, 88, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "hash_tuple_2dF") < 0)) __PYX_ERR(0, 88, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+    }
+    __pyx_v__a = ((PyArrayObject *)values[0]);
+    __pyx_v__b = ((PyArrayObject *)values[1]);
+    __pyx_v_n = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_n == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("hash_tuple_2dF", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 88, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("fast_scboot.c.tuple_hash_function.hash_tuple_2dF", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v__a), __pyx_ptype_5numpy_ndarray, 1, "_a", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v__b), __pyx_ptype_5numpy_ndarray, 1, "_b", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11fast_scboot_1c_19tuple_hash_function_2hash_tuple_2dF(__pyx_self, __pyx_v__a, __pyx_v__b, __pyx_v_n);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11fast_scboot_1c_19tuple_hash_function_2hash_tuple_2dF(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v__a, PyArrayObject *__pyx_v__b, int __pyx_v_n) {
+  int __pyx_v_i;
+  double *__pyx_v_a;
+  double *__pyx_v_b;
+  PyArrayObject *__pyx_v__c = 0;
+  double *__pyx_v_c;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd__a;
+  __Pyx_Buffer __pyx_pybuffer__a;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd__b;
+  __Pyx_Buffer __pyx_pybuffer__b;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd__c;
+  __Pyx_Buffer __pyx_pybuffer__c;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyArrayObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("hash_tuple_2dF", 0);
+  __pyx_pybuffer__c.pybuffer.buf = NULL;
+  __pyx_pybuffer__c.refcount = 0;
+  __pyx_pybuffernd__c.data = NULL;
+  __pyx_pybuffernd__c.rcbuffer = &__pyx_pybuffer__c;
+  __pyx_pybuffer__a.pybuffer.buf = NULL;
+  __pyx_pybuffer__a.refcount = 0;
+  __pyx_pybuffernd__a.data = NULL;
+  __pyx_pybuffernd__a.rcbuffer = &__pyx_pybuffer__a;
+  __pyx_pybuffer__b.pybuffer.buf = NULL;
+  __pyx_pybuffer__b.refcount = 0;
+  __pyx_pybuffernd__b.data = NULL;
+  __pyx_pybuffernd__b.rcbuffer = &__pyx_pybuffer__b;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__a.rcbuffer->pybuffer, (PyObject*)__pyx_v__a, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_19tuple_hash_function_DOUBLE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  }
+  __pyx_pybuffernd__a.diminfo[0].strides = __pyx_pybuffernd__a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__a.diminfo[0].shape = __pyx_pybuffernd__a.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__b.rcbuffer->pybuffer, (PyObject*)__pyx_v__b, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_19tuple_hash_function_DOUBLE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  }
+  __pyx_pybuffernd__b.diminfo[0].strides = __pyx_pybuffernd__b.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__b.diminfo[0].shape = __pyx_pybuffernd__b.rcbuffer->pybuffer.shape[0];
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":92
+ *     cdef int i
+ * 
+ *     cdef double* a = <double*>(np.PyArray_DATA(_a))             # <<<<<<<<<<<<<<
+ *     cdef double* b = <double*>(np.PyArray_DATA(_b))
+ * 
+ */
+  __pyx_v_a = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__a)));
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":93
+ * 
+ *     cdef double* a = <double*>(np.PyArray_DATA(_a))
+ *     cdef double* b = <double*>(np.PyArray_DATA(_b))             # <<<<<<<<<<<<<<
+ * 
+ *     cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _c = np.empty(n, dtype=DTYPE, order="C")
+ */
+  __pyx_v_b = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__b)));
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":95
+ *     cdef double* b = <double*>(np.PyArray_DATA(_b))
+ * 
+ *     cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _c = np.empty(n, dtype=DTYPE, order="C")             # <<<<<<<<<<<<<<
+ *     cdef double* c = <double*>(np.PyArray_DATA(_c))
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__c.rcbuffer->pybuffer, (PyObject*)__pyx_t_5, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_19tuple_hash_function_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
+      __pyx_v__c = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd__c.rcbuffer->pybuffer.buf = NULL;
+      __PYX_ERR(0, 95, __pyx_L1_error)
+    } else {__pyx_pybuffernd__c.diminfo[0].strides = __pyx_pybuffernd__c.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__c.diminfo[0].shape = __pyx_pybuffernd__c.rcbuffer->pybuffer.shape[0];
+    }
+  }
+  __pyx_t_5 = 0;
+  __pyx_v__c = ((PyArrayObject *)__pyx_t_4);
+  __pyx_t_4 = 0;
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":96
+ * 
+ *     cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _c = np.empty(n, dtype=DTYPE, order="C")
+ *     cdef double* c = <double*>(np.PyArray_DATA(_c))             # <<<<<<<<<<<<<<
+ * 
+ *     for i in range(n):
+ */
+  __pyx_v_c = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__c)));
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":98
+ *     cdef double* c = <double*>(np.PyArray_DATA(_c))
+ * 
+ *     for i in range(n):             # <<<<<<<<<<<<<<
+ * 
+ *         c[i] = 0.5 * (a[i] + b[i]) * (a[i] + b[i] + 1) + b[i]
+ */
+  __pyx_t_6 = __pyx_v_n;
+  __pyx_t_7 = __pyx_t_6;
+  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+    __pyx_v_i = __pyx_t_8;
+
+    /* "fast_scboot/c/tuple_hash_function.pyx":100
+ *     for i in range(n):
+ * 
+ *         c[i] = 0.5 * (a[i] + b[i]) * (a[i] + b[i] + 1) + b[i]             # <<<<<<<<<<<<<<
+ * 
+ *     return _c
+ */
+    (__pyx_v_c[__pyx_v_i]) = (((0.5 * ((__pyx_v_a[__pyx_v_i]) + (__pyx_v_b[__pyx_v_i]))) * (((__pyx_v_a[__pyx_v_i]) + (__pyx_v_b[__pyx_v_i])) + 1.0)) + (__pyx_v_b[__pyx_v_i]));
+  }
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":102
+ *         c[i] = 0.5 * (a[i] + b[i]) * (a[i] + b[i] + 1) + b[i]
+ * 
+ *     return _c             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(((PyObject *)__pyx_v__c));
+  __pyx_r = ((PyObject *)__pyx_v__c);
+  goto __pyx_L0;
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":88
+ * @wraparound(False)
+ * @cdivision(True)
+ * def hash_tuple_2dF(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] _b, int n):             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__a.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__b.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__c.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("fast_scboot.c.tuple_hash_function.hash_tuple_2dF", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__a.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__b.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd__c.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XDECREF((PyObject *)__pyx_v__c);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -3329,12 +3623,15 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_a_2, __pyx_k_a_2, sizeof(__pyx_k_a_2), 0, 0, 1, 1},
   {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
   {&__pyx_n_s_b_2, __pyx_k_b_2, sizeof(__pyx_k_b_2), 0, 0, 1, 1},
+  {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
+  {&__pyx_n_s_c_2, __pyx_k_c_2, sizeof(__pyx_k_c_2), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_empty, __pyx_k_empty, sizeof(__pyx_k_empty), 0, 0, 1, 1},
   {&__pyx_n_s_fast_scboot_c_tuple_hash_functio, __pyx_k_fast_scboot_c_tuple_hash_functio, sizeof(__pyx_k_fast_scboot_c_tuple_hash_functio), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
   {&__pyx_n_s_hash_tuple, __pyx_k_hash_tuple, sizeof(__pyx_k_hash_tuple), 0, 0, 1, 1},
+  {&__pyx_n_s_hash_tuple_2dF, __pyx_k_hash_tuple_2dF, sizeof(__pyx_k_hash_tuple_2dF), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
@@ -3396,6 +3693,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
   __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_fast_scboot_c_tuple_hash_fun, __pyx_n_s_hash_tuple, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 49, __pyx_L1_error)
+
+  /* "fast_scboot/c/tuple_hash_function.pyx":88
+ * @wraparound(False)
+ * @cdivision(True)
+ * def hash_tuple_2dF(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] _b, int n):             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i
+ */
+  __pyx_tuple__5 = PyTuple_Pack(8, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_n, __pyx_n_s_i, __pyx_n_s_a_2, __pyx_n_s_b_2, __pyx_n_s_c, __pyx_n_s_c_2); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_fast_scboot_c_tuple_hash_fun, __pyx_n_s_hash_tuple_2dF, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3436,10 +3745,20 @@ static int __Pyx_modinit_variable_export_code(void) {
 
 static int __Pyx_modinit_function_export_code(void) {
   __Pyx_RefNannyDeclarations
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_function_export_code", 0);
   /*--- Function export code ---*/
+  if (__Pyx_ExportFunction("cantor2", (void (*)(void))__pyx_f_11fast_scboot_1c_19tuple_hash_function_cantor2, "double (double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("cantor3", (void (*)(void))__pyx_f_11fast_scboot_1c_19tuple_hash_function_cantor3, "double (double, double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("cantor4", (void (*)(void))__pyx_f_11fast_scboot_1c_19tuple_hash_function_cantor4, "double (double, double, double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("cantor5", (void (*)(void))__pyx_f_11fast_scboot_1c_19tuple_hash_function_cantor5, "double (double, double, double, double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
+  __pyx_L1_error:;
+  __Pyx_RefNannyFinishContext();
+  return -1;
 }
 
 static int __Pyx_modinit_type_init_code(void) {
@@ -3718,7 +4037,7 @@ if (!__Pyx_RefNanny) {
   /*--- Global type/function init code ---*/
   (void)__Pyx_modinit_global_init_code();
   (void)__Pyx_modinit_variable_export_code();
-  (void)__Pyx_modinit_function_export_code();
+  if (unlikely(__Pyx_modinit_function_export_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
   (void)__Pyx_modinit_type_init_code();
   if (unlikely(__Pyx_modinit_type_import_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
   (void)__Pyx_modinit_variable_import_code();
@@ -3729,28 +4048,28 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "fast_scboot/c/tuple_hash_function.pyx":3
- * from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil
+ * from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
+ * 
  * cimport numpy as np
- * np.import_array()
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "fast_scboot/c/tuple_hash_function.pyx":5
- * import numpy as np
+  /* "fast_scboot/c/tuple_hash_function.pyx":7
  * cimport numpy as np
+ * 
  * np.import_array()             # <<<<<<<<<<<<<<
  * 
- * ctypedef np.npy_float64 DOUBLE_t
+ * DTYPE = np.float64
  */
-  __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 7, __pyx_L1_error)
 
   /* "fast_scboot/c/tuple_hash_function.pyx":9
- * ctypedef np.npy_float64 DOUBLE_t
+ * np.import_array()
  * 
  * DTYPE = np.float64             # <<<<<<<<<<<<<<
  * 
@@ -3776,8 +4095,20 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_hash_tuple, __pyx_t_3) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
+  /* "fast_scboot/c/tuple_hash_function.pyx":88
+ * @wraparound(False)
+ * @cdivision(True)
+ * def hash_tuple_2dF(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] _b, int n):             # <<<<<<<<<<<<<<
+ * 
+ *     cdef int i
+ */
+  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_11fast_scboot_1c_19tuple_hash_function_3hash_tuple_2dF, NULL, __pyx_n_s_fast_scboot_c_tuple_hash_functio); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_hash_tuple_2dF, __pyx_t_3) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
   /* "fast_scboot/c/tuple_hash_function.pyx":1
- * from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil             # <<<<<<<<<<<<<<
+ * from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound             # <<<<<<<<<<<<<<
  * 
  * import numpy as np
  */
@@ -6285,6 +6616,43 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
         return PyErr_WarnEx(NULL, message, 1);
     }
     return 0;
+}
+
+/* FunctionExport */
+  static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig) {
+    PyObject *d = 0;
+    PyObject *cobj = 0;
+    union {
+        void (*fp)(void);
+        void *p;
+    } tmp;
+    d = PyObject_GetAttrString(__pyx_m, (char *)"__pyx_capi__");
+    if (!d) {
+        PyErr_Clear();
+        d = PyDict_New();
+        if (!d)
+            goto bad;
+        Py_INCREF(d);
+        if (PyModule_AddObject(__pyx_m, (char *)"__pyx_capi__", d) < 0)
+            goto bad;
+    }
+    tmp.fp = f;
+#if PY_VERSION_HEX >= 0x02070000
+    cobj = PyCapsule_New(tmp.p, sig, 0);
+#else
+    cobj = PyCObject_FromVoidPtrAndDesc(tmp.p, (void *)sig, 0);
+#endif
+    if (!cobj)
+        goto bad;
+    if (PyDict_SetItemString(d, name, cobj) < 0)
+        goto bad;
+    Py_DECREF(cobj);
+    Py_DECREF(d);
+    return 0;
+bad:
+    Py_XDECREF(cobj);
+    Py_XDECREF(d);
+    return -1;
 }
 
 /* InitStrings */

@@ -1,7 +1,9 @@
-from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil
+from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound
 
 import numpy as np
+
 cimport numpy as np
+
 np.import_array()
 
 ctypedef np.npy_int32 STEP_t
@@ -27,7 +29,6 @@ def num_step_unique(np.ndarray[STEP_t, ndim=1] array, int n):
         prev = array[i]
             
     return counter
-
 
 @boundscheck(False)  
 @wraparound(False)
@@ -123,11 +124,3 @@ def inplace_ineq_filter(np.ndarray[STEP_t, ndim=2] _idx_mtx,
             acc += 1
 
     return _idx_mtx_placeholder[0:acc], _strat_arr_placeholder[0:acc], _clust_arr_placeholder[0:acc]
-
-
-
-
-
-
-
-
