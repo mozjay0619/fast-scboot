@@ -6,6 +6,7 @@ import pytest
 
 from src.fast_scboot.fast_scboot import Sampler
 from src.fast_scboot.utils import rng_generator
+from src.fast_scboot.c.pytest_validator import validate_data
 
 
 def flatten_lists(list_of_lists):
