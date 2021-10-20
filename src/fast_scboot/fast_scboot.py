@@ -66,7 +66,13 @@ class Sampler:
         self.n = len(data)
         self.data_cols = data.columns
 
-        if len(stratify_columns) == 2:
+        if len(stratify_columns) == 1:
+
+            data["__temp_stratify_column__"] = (
+                data[stratify_columns[0]].astype("category").cat.codes
+            )
+
+        elif len(stratify_columns) == 2:
 
             data["__temp_stratify_column__"] = hash_tuple_2d(
                 data[stratify_columns[0]].values.astype(np.double),
@@ -80,7 +86,9 @@ class Sampler:
         else:
 
             data["__temp_stratify_column__"] = hash_tuple(
-                np.ascontiguousarray(data[stratify_columns].values.astype(np.double))
+                np.ascontiguousarray(data[stratify_columns].values.astype(np.double)),
+                len(data),
+                len(stratify_columns)
             )
 
         data["__temp_cluster_column__"] = hash_tuple_2d(
@@ -152,10 +160,10 @@ class Sampler:
             record_memmap_metadata(self.np_metadata["_data_arr"], self._data_arr)
             write_memmap(self.np_metadata["_data_arr"], self._data_arr)
 
-        del self._idx_mtx
-        del self._strat_arr
-        del self._clust_arr
-        del self._data_arr
+        # del self._idx_mtx
+        # del self._strat_arr
+        # del self._clust_arr
+        # del self._data_arr
 
     def setup_cache(self):
         """Set up the local data to save time on (1) data read and (2) data copy. This 
@@ -219,27 +227,21 @@ class Sampler:
             self.len_idxs,
         )
 
-        self.idx_mtx = idx_mtx
-        self.strat_arr = strat_arr
-        self.clust_arr = clust_arr
-
-        self.num_strats = num_step_unique(strat_arr, len(strat_arr))
-        self.num_clusts = num_step_unique(clust_arr, len(clust_arr))
-
-        unif_samples = rng.random(size=self.num_clusts)
+        num_strats = num_step_unique(strat_arr, len(strat_arr))
+        num_clusts = num_step_unique(clust_arr, len(clust_arr))
 
         clust_cnt_arr = count_clusts(
             strat_arr, clust_arr, self.num_strats, len(idx_mtx)
         )
 
-        self.clust_cnt_arr = clust_cnt_arr
+        unif_samples = rng.random(size=self.num_clusts)
 
         sampled_idxs, updated_clust_idxs = get_sampled_indices(
             unif_samples,
             clust_cnt_arr,
             idx_mtx,
-            self.num_strats,
-            self.num_clusts,
+            num_strats,
+            num_clusts,
             self.n,
         )
 

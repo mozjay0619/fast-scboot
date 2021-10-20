@@ -100,3 +100,4 @@ def hash_tuple_2d(np.ndarray[DOUBLE_t, ndim=1] _a, np.ndarray[DOUBLE_t, ndim=1] 
         c[i] = 0.5 * (a[i] + b[i]) * (a[i] + b[i] + 1) + b[i]
 
     return _c
+
