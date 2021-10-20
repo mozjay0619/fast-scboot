@@ -56,7 +56,7 @@ def test_count_clust_array():
     strat_array = np.asarray([0, 0, 1, 1, 1]).astype(np.int32)
     clust_array = np.asarray([0, 1, 2, 2, 3]).astype(np.int32)
 
-    result = count_clust_array(strat_array, clust_array, 2, len(clust_array))
+    result = count_clusts(strat_array, clust_array, 2, len(clust_array))
 
     answer = np.asarray([2, 2])
 
@@ -65,7 +65,7 @@ def test_count_clust_array():
     strat_array = np.asarray([0, 0, 1, 1, 1]).astype(np.int32)
     clust_array = np.asarray([0, 1, 2, 3, 4]).astype(np.int32)
 
-    result = count_clust_array(strat_array, clust_array, 2, len(clust_array))
+    result = count_clusts(strat_array, clust_array, 2, len(clust_array))
 
     answer = np.asarray([2, 3])
 
@@ -74,7 +74,7 @@ def test_count_clust_array():
     strat_array = np.asarray([0, 0, 1, 1, 2]).astype(np.int32)
     clust_array = np.asarray([0, 1, 2, 3, 4]).astype(np.int32)
 
-    result = count_clust_array(strat_array, clust_array, 3, len(clust_array))
+    result = count_clusts(strat_array, clust_array, 3, len(clust_array))
 
     answer = np.asarray([2, 2, 1])
 
@@ -83,7 +83,7 @@ def test_count_clust_array():
     strat_array = np.asarray([0, 0, 1, 1, 1]).astype(np.int32)
     clust_array = np.asarray([0, 1, 3, 3, 3]).astype(np.int32)
 
-    result = count_clust_array(strat_array, clust_array, 2, len(clust_array))
+    result = count_clusts(strat_array, clust_array, 2, len(clust_array))
 
     answer = np.asarray([2, 1])
 
@@ -92,7 +92,7 @@ def test_count_clust_array():
     strat_array = np.arange(5).astype(np.int32)
     clust_array = np.arange(5).astype(np.int32)
 
-    result = count_clust_array(strat_array, clust_array, 5, len(clust_array))
+    result = count_clusts(strat_array, clust_array, 5, len(clust_array))
 
     answer = np.asarray([1, 1, 1, 1, 1])
 

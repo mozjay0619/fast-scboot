@@ -11,3 +11,13 @@ Install
 ::
 
 	pip install fast-scboot
+
+Getting started
+---------------
+
+
+
+How does it work?
+-----------------
+
+
