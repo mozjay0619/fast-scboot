@@ -28,4 +28,4 @@ When the ``prepare_data`` method is invoked, once the original data has been sor
 When the ``sample_data`` method is invoked, three additional auxiliary data are created. The ``clust_cnt_arr`` array stores the number of unique cluster values in each strata, in this case, [3, 2, 2]. The total number of unique strata values is stored in the ``num_strats`` variable, and the same for cluster is store in the ``num_clusts`` variable.
 
 .. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image2.png
-	:width: 600pt
+	:width: 300pt
