@@ -2,7 +2,7 @@ import pytest
 
 import numpy as np
 
-from src.fast_scboot.c.utils import rng_generator
+from src.fast_scboot.utils import rng_generator
 from src.fast_scboot.fast_scboot import Sampler
 
 
