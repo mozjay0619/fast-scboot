@@ -25,7 +25,12 @@ How does it work?
 
 When the ``prepare_data`` method is invoked, once the original data has been sorted by strata and cluster levels, the ``make_index_matrix`` creates three auxiliary arrays: ``idx_mtx``, ``strat_arr``, and ``clust_arr``. The ``idx_mtx`` array stores information on where each cluster begins and how many rows it occupies, as well as the actual cluster value. The ``strat_arr`` is an index array that indexes the strata levels at each of the cluster level. The ``clust_arr`` does the same but for the cluster levels. The reason the values of the ``clust_arr`` are not uniformly increasing like ``strat_arr`` in this example is because internally, the unique indices are created using the cantor pairing function for speed (and then re-cast into integer using Pandas "cateory" type).
 
-When the ``sample_data`` method is invoked, three additional auxiliary data are created. The ``clust_cnt_arr`` array stores the number of unique cluster values in each strata, in this case, [3, 2, 2]. The total number of unique strata values is stored in the ``num_strats`` variable, and the same for cluster is store in the ``num_clusts`` variable.
+When the ``sample_data`` method is invoked, three additional auxiliary data are created. The ``clust_cnt_arr`` array stores the number of unique cluster values in each strata, in this case, [3, 2, 2]. The total number of unique strata values is stored in the ``num_strats`` variable (3 in this case), and the same for cluster is store in the ``num_clusts`` variable (7 in this case).
 
 .. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image2.png
 	:width: 260pt
+
+We produce a random array from [0, 1] uniform distribution with size equal to ``num_clusts``. It's important that we invoke random sampling function once because usually it's very expensive to call them repeatedly. Then we use the ``clust_cnt_arr`` and loop through the uniform random numbers and multiply them by the values in ``clust_cnt_arr``, and then cast them to integer datatype. We are effectively mapping the uniform random values from [0, 1] to appropriate range of integer values, which can be used as randomly bootstrap sampled indices, stored in ``s`` variable.
+
+.. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image3.png
+	:width: 400pt
