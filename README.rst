@@ -34,3 +34,5 @@ We produce a random array from [0, 1] uniform distribution with size equal to ``
 
 .. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image3.png
 	:width: 370pt
+
+The ``s`` array is used on the ``idx_mtx``, where we are effectively sampling with replacement clusters from each strata (i.e. from each colored areas). Once we have cluster bootstrap sampled ``idx_mtx``, we can use the information stored in that matrix to construct the ``sampled_idxs`` array, which records indices of the sampled clusters in the original data. The final return value is produced by fancy indexing the original data using the ``sampled_idxs``. 
