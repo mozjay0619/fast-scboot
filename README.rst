@@ -27,7 +27,7 @@ When the ``prepare_data`` method is invoked, once the original data has been sor
 
 When the ``sample_data`` method is invoked, three additional auxiliary data are created. The ``clust_cnt_arr`` array stores the number of unique cluster values in each strata, in this case, [3, 2, 2]. The total number of unique strata values is stored in the ``num_strats`` variable (3 in this case), and the same for cluster is store in the ``num_clusts`` variable (7 in this case).
 
-.. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image4.png
+.. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/imageB.png
 	:width: 265pt
 
 We produce a random array from [0, 1] uniform distribution with size equal to ``num_clusts``. It's important that we invoke random sampling function once because usually it's very expensive to call them repeatedly. Then we use the ``clust_cnt_arr`` and loop through the uniform random numbers and multiply them by the values in ``clust_cnt_arr``, and then cast them to integer datatype. We are effectively mapping the uniform random values from [0, 1] to appropriate range of integer values, which can be used as randomly bootstrap sampled indices (stored in ``s`` variable) for the ``idx_mtx`` array.
