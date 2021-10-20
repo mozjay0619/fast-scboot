@@ -1,6 +1,7 @@
 import itertools
 
 import numpy as np
+import pandas as pd
 import pytest
 
 from src.fast_scboot.fast_scboot import Sampler
