@@ -231,10 +231,10 @@ class Sampler:
         num_clusts = num_step_unique(clust_arr, len(clust_arr))
 
         clust_cnt_arr = count_clusts(
-            strat_arr, clust_arr, self.num_strats, len(idx_mtx)
+            strat_arr, clust_arr, num_strats, len(idx_mtx)
         )
 
-        unif_samples = rng.random(size=self.num_clusts)
+        unif_samples = rng.random(size=num_clusts)
 
         sampled_idxs, updated_clust_idxs = get_sampled_indices(
             unif_samples,

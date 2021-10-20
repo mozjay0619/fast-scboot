@@ -56,6 +56,11 @@ if USE_CYTHON:
             ["src/fast_scboot/c/sample_index_helper.pyx"],
             **opts
         ),
+        Extension(
+            "fast_scboot.c.pytest_validator",
+            ["src/fast_scboot/c/pytest_validator.pyx"],
+            **opts
+        ),
     ]
     # First argument is the compilation target location.
     cmdclass.update({"build_ext": build_ext})
@@ -71,6 +76,11 @@ else:
         Extension(
             "fast_scboot.c.sample_index_helper",
             ["src/fast_scboot/c/sample_index_helper.c"],
+            **opts
+        ),
+        Extension(
+            "fast_scboot.c.pytest_validator",
+            ["src/fast_scboot/c/pytest_validator.c"],
             **opts
         ),
     ]
