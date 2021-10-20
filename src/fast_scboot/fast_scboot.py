@@ -88,7 +88,7 @@ class Sampler:
             data["__temp_stratify_column__"] = hash_tuple(
                 np.ascontiguousarray(data[stratify_columns].values.astype(np.double)),
                 len(data),
-                len(stratify_columns)
+                len(stratify_columns),
             )
 
         data["__temp_cluster_column__"] = hash_tuple_2d(
@@ -166,8 +166,8 @@ class Sampler:
         # del self._data_arr
 
     def setup_cache(self):
-        """Set up the local data to save time on (1) data read and (2) data copy. This 
-        is especially useful for parallelization where the main source of the bottleneck 
+        """Set up the local data to save time on (1) data read and (2) data copy. This
+        is especially useful for parallelization where the main source of the bottleneck
         is data transfer.
         """
         if not self.pre_post:
@@ -197,13 +197,13 @@ class Sampler:
         """Produce stratified cluster bootstrap sampled data from the original data.
         The sampling algorithm is as follows:
 
-        1. If ``num_clusts`` is used, first get the sampled range of data using the 
-        cluster values. The filtering is done inplace to avoid incurring the cost of 
+        1. If ``num_clusts`` is used, first get the sampled range of data using the
+        cluster values. The filtering is done inplace to avoid incurring the cost of
         copying data.
         2. Get the number of unique strata levels and clusters.
         3. Draw sample from [0, 1] uniform distribution ``num_clusts`` number of sample
         points.
-        4. For each stratum, multiply the unfirom random value by the the number of 
+        4. For each stratum, multiply the unfirom random value by the the number of
         clusters within that stratum to map the random variables to the appropriate range
         of natural numbers, which is used to fancy index from the original data. Refer
         to the ``get_sampled_indices`` method.
@@ -230,9 +230,7 @@ class Sampler:
         num_strats = num_step_unique(strat_arr, len(strat_arr))
         num_clusts = num_step_unique(clust_arr, len(clust_arr))
 
-        clust_cnt_arr = count_clusts(
-            strat_arr, clust_arr, num_strats, len(idx_mtx)
-        )
+        clust_cnt_arr = count_clusts(strat_arr, clust_arr, num_strats, len(idx_mtx))
 
         unif_samples = rng.random(size=num_clusts)
 
