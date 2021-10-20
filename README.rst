@@ -22,4 +22,4 @@ How does it work?
 
 
 .. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/img1.png
-	:width: 750pt
+	:width: 700pt
