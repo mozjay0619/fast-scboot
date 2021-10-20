@@ -1,5 +1,7 @@
 import pytest
 
+import numpy as np
+
 from src.fast_scboot.c.sample_index_helper import (count_clusts,
                                                    make_index_matrix)
 

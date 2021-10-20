@@ -1,5 +1,7 @@
 import pytest
 
+import numpy as np
+
 from src.fast_scboot.c.utils import inplace_ineq_filter
 
 
