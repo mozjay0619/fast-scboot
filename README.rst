@@ -17,6 +17,41 @@ Getting started
 
 
 
+First import the package and initialize the ``Sampler`` object.
+
+.. code:: python
+
+	from fast_scboot import Sampler
+
+	s = Sampler()
+
+Let's create a sample data.
+
+.. code:: python
+
+	import numpy as np
+	import pandas as pd
+
+	clusts = np.asarray([0, 1, 1, 2, 0, 1, 1, 0, 2, 2])
+	strats = np.asarray([0, 0, 0, 0, 1, 1, 1, 2, 2, 2])
+	data = np.squeeze(np.dstack([strats, clusts])).astype(np.double)
+	data = pd.DataFrame(data, columns=['strat', 'clust'])
+
+Two preparatory steps are preparing the data, and creating some data cache:
+
+.. code:: python
+
+	s.prepare_data(data, 'strat', 'clust')
+	s.setup_cache()
+
+After that, you can start drawing samples:
+
+.. code:: python
+
+	for i in range(100):
+
+		sampled = s.sample_data(seed=i)
+
 How does it work?
 -----------------
 
