@@ -4,9 +4,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from src.fast_scboot.c.pytest_validator import validate_data
 from src.fast_scboot.fast_scboot import Sampler
 from src.fast_scboot.utils import rng_generator
-from src.fast_scboot.c.pytest_validator import validate_data
 
 
 def flatten_lists(list_of_lists):
@@ -45,10 +45,9 @@ def test_sampler():
 
         data, max_clust, num_clusts = fake_data_generator(seed=i)
 
-        s = Sampler()
+        s = Sampler(return_dataframe=False)
         s.prepare_data(data, "strat", "clust", num_clusts=max_clust)
         s.setup_cache()
-        out = np.empty([data.shape[0] * 2, data.shape[1] + 1])
         res = s.sample_data(seed=i, out=out)
 
         out1, out2 = validate_data(res)
