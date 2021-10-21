@@ -48,7 +48,7 @@ def test_sampler():
         s = Sampler(return_dataframe=False)
         s.prepare_data(data, "strat", "clust", num_clusts=max_clust)
         s.setup_cache()
-        res = s.sample_data(seed=i, out=out)
+        res = s.sample_data(seed=i)
 
         out1, out2 = validate_data(res)
 
