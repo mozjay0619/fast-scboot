@@ -2,21 +2,33 @@ import time
 from collections import defaultdict
 
 import numpy as np
+import pandas as pd
 
-from .c.sample_index_helper import (count_clusts, get_sampled_indices,
-                                    make_index_matrix)
+from .c.sample_index_helper import count_clusts, get_sampled_indices, make_index_matrix
 from .c.tuple_hash_function import hash_tuple, hash_tuple_2d
-from .c.utils import (inplace_fancy_indexer, inplace_ineq_filter,
-                      num_step_unique)
-from .utils import (get_unique_combinations, read_memmap,
-                    record_memmap_metadata, rng_generator, write_memmap)
+from .c.utils import inplace_fancy_indexer, inplace_ineq_filter, num_step_unique
+from .utils import (
+    get_unique_combinations,
+    read_memmap,
+    record_memmap_metadata,
+    rng_generator,
+    write_memmap,
+)
 
 
 class Sampler:
-    def __init__(self, pre_post=False, use_numpy=True):
+    def __init__(
+        self,
+        pre_post=False,
+        out_array=True,
+        return_dataframe=True,
+        updated_clust_name="__clust_values__",
+    ):
 
         self.pre_post = pre_post
-        self.use_numpy = use_numpy
+        self.out_array = out_array
+        self.return_dataframe = return_dataframe
+        self.updated_clust_name = updated_clust_name
 
     def prepare_data(self, data, stratify_columns, cluster_column, num_clusts=None):
         """Prepares the data for sampling procedure. The preparation steps are as follows:
@@ -106,6 +118,8 @@ class Sampler:
         data.reset_index(drop=True, inplace=True)
         self.data = data.copy(deep=False)
 
+        self.columns = list(data.columns)
+
         arr = self.data["__temp_cluster_column__"].values.astype(np.int32)
         self._num_clusts = num_step_unique(arr, len(arr))
 
@@ -144,26 +158,24 @@ class Sampler:
 
         self._data_arr = np.ascontiguousarray(data.values)
 
-        if self.use_numpy:
+        self.np_metadata = defaultdict(dict)
 
-            self.np_metadata = defaultdict(dict)
+        record_memmap_metadata(self.np_metadata["_idx_mtx"], self._idx_mtx)
+        write_memmap(self.np_metadata["_idx_mtx"], self._idx_mtx)
 
-            record_memmap_metadata(self.np_metadata["_idx_mtx"], self._idx_mtx)
-            write_memmap(self.np_metadata["_idx_mtx"], self._idx_mtx)
+        record_memmap_metadata(self.np_metadata["_strat_arr"], self._strat_arr)
+        write_memmap(self.np_metadata["_strat_arr"], self._strat_arr)
 
-            record_memmap_metadata(self.np_metadata["_strat_arr"], self._strat_arr)
-            write_memmap(self.np_metadata["_strat_arr"], self._strat_arr)
+        record_memmap_metadata(self.np_metadata["_clust_arr"], self._clust_arr)
+        write_memmap(self.np_metadata["_clust_arr"], self._clust_arr)
 
-            record_memmap_metadata(self.np_metadata["_clust_arr"], self._clust_arr)
-            write_memmap(self.np_metadata["_clust_arr"], self._clust_arr)
+        record_memmap_metadata(self.np_metadata["_data_arr"], self._data_arr)
+        write_memmap(self.np_metadata["_data_arr"], self._data_arr)
 
-            record_memmap_metadata(self.np_metadata["_data_arr"], self._data_arr)
-            write_memmap(self.np_metadata["_data_arr"], self._data_arr)
-
-        # del self._idx_mtx
-        # del self._strat_arr
-        # del self._clust_arr
-        # del self._data_arr
+        del self._idx_mtx
+        del self._strat_arr
+        del self._clust_arr
+        del self._data_arr
 
     def setup_cache(self):
         """Set up the local data to save time on (1) data read and (2) data copy. This
@@ -193,7 +205,17 @@ class Sampler:
         self._clust_arr = np.asarray(read_memmap(self.np_metadata["_clust_arr"]))
         self._data_arr = np.asarray(read_memmap(self.np_metadata["_data_arr"]))
 
-    def sample_data(self, seed=None, out=None):
+        if self.out_array:
+            self.out = np.empty(
+                [int(self._data_arr.shape[0] * 1.5), self._data_arr.shape[1] + 1]
+            )
+        else:
+            self.out = None
+
+    def sample_data(
+        self,
+        seed=None,
+    ):
         """Produce stratified cluster bootstrap sampled data from the original data.
         The sampling algorithm is as follows:
 
@@ -243,19 +265,30 @@ class Sampler:
             self.n,
         )
 
-        if out is not None:
+        if self.out is not None:
 
             inplace_fancy_indexer(
                 self._data_arr,
-                out,
+                self.out,
                 sampled_idxs,
                 len(sampled_idxs),
                 self._data_arr.shape[1] + 1,  # for the updated_clust_idxs column
                 updated_clust_idxs,
             )
 
-            return out[0 : len(sampled_idxs)]
+            if self.return_dataframe:
+
+                out_df = pd.DataFrame(
+                    self.out[0 : len(sampled_idxs)],
+                    columns=self.columns + [self.updated_clust_name],
+                )
+
+                return out_df
+
+            else:
+
+                return self.out[0 : len(sampled_idxs)]
 
         else:
 
-            pass
+            raise NotImplementedError("Please set out_array = True")

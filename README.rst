@@ -15,7 +15,40 @@ Install
 Getting started
 ---------------
 
+First import the package and initialize the ``Sampler`` object.
 
+.. code:: python
+
+	from fast_scboot import Sampler
+
+	s = Sampler()
+
+Let's create a sample data.
+
+.. code:: python
+
+	import numpy as np
+	import pandas as pd
+
+	clusts = np.asarray([0, 1, 1, 2, 0, 1, 1, 0, 2, 2])
+	strats = np.asarray([0, 0, 0, 0, 1, 1, 1, 2, 2, 2])
+	data = np.squeeze(np.dstack([strats, clusts])).astype(np.double)
+	data = pd.DataFrame(data, columns=['strat', 'clust'])
+
+Two preparatory steps are preparing the data, and creating some data cache:
+
+.. code:: python
+
+	s.prepare_data(data, 'strat', 'clust')
+	s.setup_cache()
+
+After that, you can start drawing samples:
+
+.. code:: python
+
+	for i in range(100):
+
+	    sampled = s.sample_data(seed=i)
 
 How does it work?
 -----------------
@@ -35,4 +68,4 @@ We produce a random array from [0, 1] uniform distribution with size equal to ``
 .. image:: https://github.com/mozjay0619/fast-scboot/blob/master/media/image5.png
 	:width: 365pt
 
-The ``s`` array is used on the ``idx_mtx``, where we are effectively sampling with replacement clusters from each strata (i.e. from each colored areas). Once we have cluster bootstrap sampled ``idx_mtx``, we can use the information stored in that matrix to construct the ``sampled_idxs`` array, which records indices of the sampled data in terms of the indicies of the original data. The final return value is produced by fancy indexing the original data using the ``sampled_idxs``. The native numpy fancy indexing is somewhat costly due to data copy, so we provide our own inplace version of fancy indexing.
+The ``s`` array is used on the ``idx_mtx``, where we are effectively sampling with replacement clusters from each stratum (i.e. from each colored area). Once we have cluster bootstrap sampled ``idx_mtx``, we can use the information stored in that matrix to construct the ``sampled_idxs`` array, which records indices of the sampled data in terms of the indicies of the original data. The final return value is produced by fancy indexing the original data using the ``sampled_idxs``. The native numpy fancy indexing is somewhat costly due to data copy, so we provide our own inplace version of fancy indexing.
