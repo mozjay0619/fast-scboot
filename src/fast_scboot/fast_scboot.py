@@ -30,7 +30,7 @@ class Sampler:
         self.return_dataframe = return_dataframe
         self.updated_clust_name = updated_clust_name
 
-    def prepare_data(self, data, stratify_columns, cluster_column, num_clusts=None):
+    def prepare_data(self, data, stratify_columns=None, cluster_column=None, num_clusts=None):
         """Prepares the data for sampling procedure. The preparation steps are as follows:
 
         1. Create temporary columns for strata and clusters.
