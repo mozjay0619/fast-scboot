@@ -86,7 +86,7 @@ else:
     ]
 
 # circleci.py version
-VERSION = "v0.1.b1"
+VERSION = "v0.1.b2"
 
 # circleci version verfication
 class VerifyVersionCommand(install):
