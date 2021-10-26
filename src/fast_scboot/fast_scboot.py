@@ -71,53 +71,11 @@ class Sampler:
         """
         self.num_testable_clusts = num_clusts
 
-        if not isinstance(stratify_columns, list):
+        if not ("__temp_stratify_column__" in data.columns and "__temp_cluster_column__" in data.columns):
 
-            stratify_columns = [stratify_columns]
+            self._create_auxiliary_columns_and_sort_data(data, stratify_columns, cluster_column)
 
         self.n = len(data)
-        self.data_cols = data.columns
-
-        if len(stratify_columns) == 1:
-
-            data["__temp_stratify_column__"] = (
-                data[stratify_columns[0]].astype("category").cat.codes
-            )
-
-        elif len(stratify_columns) == 2:
-
-            data["__temp_stratify_column__"] = hash_tuple_2d(
-                data[stratify_columns[0]].values.astype(np.double),
-                data[stratify_columns[1]].values.astype(np.double),
-                self.n,
-            )
-            data["__temp_stratify_column__"] = (
-                data["__temp_stratify_column__"].astype("category").cat.codes
-            )
-
-        else:
-
-            data["__temp_stratify_column__"] = hash_tuple(
-                np.ascontiguousarray(data[stratify_columns].values.astype(np.double)),
-                len(data),
-                len(stratify_columns),
-            )
-
-        data["__temp_cluster_column__"] = hash_tuple_2d(
-            data["__temp_stratify_column__"].values.astype(np.double),
-            data[cluster_column].values.astype(np.double),
-            self.n,
-        )
-        data["__temp_cluster_column__"] = (
-            data["__temp_cluster_column__"].astype("category").cat.codes
-        )
-
-        data = data.sort_values(
-            by=["__temp_stratify_column__", "__temp_cluster_column__"]
-        )
-        data.reset_index(drop=True, inplace=True)
-        self.data = data.copy(deep=False)
-
         self.columns = list(data.columns)
 
         arr = self.data["__temp_cluster_column__"].values.astype(np.int32)
@@ -176,6 +134,54 @@ class Sampler:
         del self._strat_arr
         del self._clust_arr
         del self._data_arr
+
+    def _create_auxiliary_columns_and_sort_data(self, data, stratify_columns, cluster_column):
+
+        if not isinstance(stratify_columns, list):
+
+            stratify_columns = [stratify_columns]
+
+        n = len(data)
+
+        if len(stratify_columns) == 1:
+
+            data["__temp_stratify_column__"] = (
+                data[stratify_columns[0]].astype("category").cat.codes
+            )
+
+        elif len(stratify_columns) == 2:
+
+            data["__temp_stratify_column__"] = hash_tuple_2d(
+                data[stratify_columns[0]].values.astype(np.double),
+                data[stratify_columns[1]].values.astype(np.double),
+                n,
+            )
+            data["__temp_stratify_column__"] = (
+                data["__temp_stratify_column__"].astype("category").cat.codes
+            )
+
+        else:
+
+            data["__temp_stratify_column__"] = hash_tuple(
+                np.ascontiguousarray(data[stratify_columns].values.astype(np.double)),
+                len(data),
+                len(stratify_columns),
+            )
+
+        data["__temp_cluster_column__"] = hash_tuple_2d(
+            data["__temp_stratify_column__"].values.astype(np.double),
+            data[cluster_column].values.astype(np.double),
+            n,
+        )
+        data["__temp_cluster_column__"] = (
+            data["__temp_cluster_column__"].astype("category").cat.codes
+        )
+
+        data = data.sort_values(
+            by=["__temp_stratify_column__", "__temp_cluster_column__"]
+        )
+        data.reset_index(drop=True, inplace=True)
+        self.data = data.copy(deep=False)
 
     def setup_cache(self):
         """Set up the local data to save time on (1) data read and (2) data copy. This
