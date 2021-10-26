@@ -71,9 +71,16 @@ class Sampler:
         """
         self.num_testable_clusts = num_clusts
 
+        # Skip the expensive preprocessing if it was already done.
+        # Warning: this means the order of the dataframe has not be tempered with since the last time
+        # ``_create_auxiliary_columns_and_sort_data`` was invoked on it. Remove the auxiliary
+        # columns if the order has been changed.
         if not ("__temp_stratify_column__" in data.columns and "__temp_cluster_column__" in data.columns):
 
-            self._create_auxiliary_columns_and_sort_data(data, stratify_columns, cluster_column)
+            data = self._create_auxiliary_columns_and_sort_data(data, stratify_columns, cluster_column)
+
+        data.reset_index(drop=True, inplace=True)
+        self.data = data.copy(deep=False)
 
         self.n = len(data)
         self.columns = list(data.columns)
@@ -180,8 +187,8 @@ class Sampler:
         data = data.sort_values(
             by=["__temp_stratify_column__", "__temp_cluster_column__"]
         )
-        data.reset_index(drop=True, inplace=True)
-        self.data = data.copy(deep=False)
+
+        return data
 
     def setup_cache(self):
         """Set up the local data to save time on (1) data read and (2) data copy. This
