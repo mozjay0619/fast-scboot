@@ -79,6 +79,7 @@ class Sampler:
 
             data = self._create_auxiliary_columns_and_sort_data(data, stratify_columns, cluster_column)
 
+        # Reset index.
         data.reset_index(drop=True, inplace=True)
         self.data = data.copy(deep=False)
 
@@ -184,6 +185,11 @@ class Sampler:
             data["__temp_cluster_column__"].astype("category").cat.codes
         )
 
+        # Reorder dataframe columns so cluster_column comes last.
+        cluster_column_arr = data[cluster_column]
+        data.drop(cluster_column, axis=1, inplace=True)
+        data[cluster_column] = cluster_column_arr
+
         data = data.sort_values(
             by=["__temp_stratify_column__", "__temp_cluster_column__"]
         )
@@ -220,7 +226,7 @@ class Sampler:
 
         if self.out_array:
             self.out = np.empty(
-                [int(self._data_arr.shape[0] * 1.5), self._data_arr.shape[1] + 1]
+                [int(self._data_arr.shape[0] * 1.5), self._data_arr.shape[1]]
             )
         else:
             self.out = None
@@ -285,7 +291,7 @@ class Sampler:
                 self.out,
                 sampled_idxs,
                 len(sampled_idxs),
-                self._data_arr.shape[1] + 1,  # for the updated_clust_idxs column
+                self._data_arr.shape[1],  # for the updated_clust_idxs column
                 updated_clust_idxs,
             )
 
@@ -293,7 +299,7 @@ class Sampler:
 
                 out_df = pd.DataFrame(
                     self.out[0 : len(sampled_idxs)],
-                    columns=self.columns + [self.updated_clust_name],
+                    columns=self.columns,
                 )
 
                 return out_df
