@@ -22,13 +22,11 @@ class Sampler:
         pre_post=False,
         out_array=True,
         return_dataframe=True,
-        updated_clust_name="__clust_values__",
     ):
 
         self.pre_post = pre_post
         self.out_array = out_array
         self.return_dataframe = return_dataframe
-        self.updated_clust_name = updated_clust_name
 
     def prepare_data(self, data, stratify_columns=None, cluster_column=None, num_clusts=None):
         """Prepares the data for sampling procedure. The preparation steps are as follows:

@@ -1085,7 +1085,7 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "fast_scboot/c/pytest_validator.pyx":7
+/* "fast_scboot/c/pytest_validator.pyx":9
  * np.import_array()
  * 
  * ctypedef np.npy_int32 STEP_t             # <<<<<<<<<<<<<<
@@ -1094,7 +1094,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef npy_int32 __pyx_t_11fast_scboot_1c_16pytest_validator_STEP_t;
 
-/* "fast_scboot/c/pytest_validator.pyx":8
+/* "fast_scboot/c/pytest_validator.pyx":10
  * 
  * ctypedef np.npy_int32 STEP_t
  * ctypedef np.npy_float32 DTYPE_t             # <<<<<<<<<<<<<<
@@ -1103,7 +1103,7 @@ typedef npy_int32 __pyx_t_11fast_scboot_1c_16pytest_validator_STEP_t;
  */
 typedef npy_float32 __pyx_t_11fast_scboot_1c_16pytest_validator_DTYPE_t;
 
-/* "fast_scboot/c/pytest_validator.pyx":9
+/* "fast_scboot/c/pytest_validator.pyx":11
  * ctypedef np.npy_int32 STEP_t
  * ctypedef np.npy_float32 DTYPE_t
  * ctypedef np.npy_float64 DOUBLE_t             # <<<<<<<<<<<<<<
@@ -1810,7 +1810,7 @@ static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_codeobj__4;
 /* Late includes */
 
-/* "fast_scboot/c/pytest_validator.pyx":17
+/* "fast_scboot/c/pytest_validator.pyx":19
  * @wraparound(False)
  * @cdivision(True)
  * def validate_data(np.ndarray[DOUBLE_t, ndim=2] _a):             # <<<<<<<<<<<<<<
@@ -1828,7 +1828,7 @@ static PyObject *__pyx_pw_11fast_scboot_1c_16pytest_validator_1validate_data(PyO
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("validate_data (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v__a), __pyx_ptype_5numpy_ndarray, 1, "_a", 0))) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v__a), __pyx_ptype_5numpy_ndarray, 1, "_a", 0))) __PYX_ERR(0, 19, __pyx_L1_error)
   __pyx_r = __pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(__pyx_self, ((PyArrayObject *)__pyx_v__a));
 
   /* function exit code */
@@ -1892,11 +1892,11 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __pyx_pybuffernd__a.rcbuffer = &__pyx_pybuffer__a;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__a.rcbuffer->pybuffer, (PyObject*)__pyx_v__a, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_16pytest_validator_DOUBLE_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 17, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__a.rcbuffer->pybuffer, (PyObject*)__pyx_v__a, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_16pytest_validator_DOUBLE_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 19, __pyx_L1_error)
   }
   __pyx_pybuffernd__a.diminfo[0].strides = __pyx_pybuffernd__a.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__a.diminfo[0].shape = __pyx_pybuffernd__a.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd__a.diminfo[1].strides = __pyx_pybuffernd__a.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd__a.diminfo[1].shape = __pyx_pybuffernd__a.rcbuffer->pybuffer.shape[1];
 
-  /* "fast_scboot/c/pytest_validator.pyx":19
+  /* "fast_scboot/c/pytest_validator.pyx":21
  * def validate_data(np.ndarray[DOUBLE_t, ndim=2] _a):
  * 
  *     cdef int n = _a.shape[0]             # <<<<<<<<<<<<<<
@@ -1905,7 +1905,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_n = (__pyx_v__a->dimensions[0]);
 
-  /* "fast_scboot/c/pytest_validator.pyx":20
+  /* "fast_scboot/c/pytest_validator.pyx":22
  * 
  *     cdef int n = _a.shape[0]
  *     cdef int p = _a.shape[1]             # <<<<<<<<<<<<<<
@@ -1914,7 +1914,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_p = (__pyx_v__a->dimensions[1]);
 
-  /* "fast_scboot/c/pytest_validator.pyx":22
+  /* "fast_scboot/c/pytest_validator.pyx":24
  *     cdef int p = _a.shape[1]
  * 
  *     cdef int i, j = 0, k = 0             # <<<<<<<<<<<<<<
@@ -1924,7 +1924,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __pyx_v_j = 0;
   __pyx_v_k = 0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":24
+  /* "fast_scboot/c/pytest_validator.pyx":26
  *     cdef int i, j = 0, k = 0
  * 
  *     cdef double* a = <double*>(np.PyArray_DATA(_a))             # <<<<<<<<<<<<<<
@@ -1933,7 +1933,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_a = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__a)));
 
-  /* "fast_scboot/c/pytest_validator.pyx":29
+  /* "fast_scboot/c/pytest_validator.pyx":31
  *     cdef double clust
  *     cdef double cur_clust
  *     cdef double clust_acc = 0             # <<<<<<<<<<<<<<
@@ -1942,7 +1942,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_clust_acc = 0.0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":31
+  /* "fast_scboot/c/pytest_validator.pyx":33
  *     cdef double clust_acc = 0
  * 
  *     cdef double prev_clust = a[p-1]             # <<<<<<<<<<<<<<
@@ -1951,7 +1951,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_prev_clust = (__pyx_v_a[(__pyx_v_p - 1)]);
 
-  /* "fast_scboot/c/pytest_validator.pyx":32
+  /* "fast_scboot/c/pytest_validator.pyx":34
  * 
  *     cdef double prev_clust = a[p-1]
  *     cdef double prev_strat = a[0]             # <<<<<<<<<<<<<<
@@ -1960,21 +1960,21 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_prev_strat = (__pyx_v_a[0]);
 
-  /* "fast_scboot/c/pytest_validator.pyx":34
+  /* "fast_scboot/c/pytest_validator.pyx":36
  *     cdef double prev_strat = a[0]
  * 
  *     cdef np.ndarray[DOUBLE_t, ndim=2, mode="c"] _out = np.empty([n, 2], dtype=DTYPE, order="C")             # <<<<<<<<<<<<<<
  *     cdef double* out = <double*>(np.PyArray_DATA(_out))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -1982,30 +1982,30 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __Pyx_GIVEREF(__pyx_int_2);
   PyList_SET_ITEM(__pyx_t_3, 1, __pyx_int_2);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_order, __pyx_n_s_C) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_order, __pyx_n_s_C) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 36, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__out.rcbuffer->pybuffer, (PyObject*)__pyx_t_5, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_16pytest_validator_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {
       __pyx_v__out = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd__out.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 34, __pyx_L1_error)
+      __PYX_ERR(0, 36, __pyx_L1_error)
     } else {__pyx_pybuffernd__out.diminfo[0].strides = __pyx_pybuffernd__out.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__out.diminfo[0].shape = __pyx_pybuffernd__out.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd__out.diminfo[1].strides = __pyx_pybuffernd__out.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd__out.diminfo[1].shape = __pyx_pybuffernd__out.rcbuffer->pybuffer.shape[1];
     }
   }
@@ -2013,7 +2013,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __pyx_v__out = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":35
+  /* "fast_scboot/c/pytest_validator.pyx":37
  * 
  *     cdef np.ndarray[DOUBLE_t, ndim=2, mode="c"] _out = np.empty([n, 2], dtype=DTYPE, order="C")
  *     cdef double* out = <double*>(np.PyArray_DATA(_out))             # <<<<<<<<<<<<<<
@@ -2022,44 +2022,44 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_out = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__out)));
 
-  /* "fast_scboot/c/pytest_validator.pyx":37
+  /* "fast_scboot/c/pytest_validator.pyx":39
  *     cdef double* out = <double*>(np.PyArray_DATA(_out))
  * 
  *     cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _out2 = np.empty(n, dtype=DTYPE, order="C")             # <<<<<<<<<<<<<<
  *     cdef double* out2 = <double*>(np.PyArray_DATA(_out2))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DTYPE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DTYPE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 39, __pyx_L1_error)
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_2);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd__out2.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_11fast_scboot_1c_16pytest_validator_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
       __pyx_v__out2 = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd__out2.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 37, __pyx_L1_error)
+      __PYX_ERR(0, 39, __pyx_L1_error)
     } else {__pyx_pybuffernd__out2.diminfo[0].strides = __pyx_pybuffernd__out2.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd__out2.diminfo[0].shape = __pyx_pybuffernd__out2.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -2067,7 +2067,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __pyx_v__out2 = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":38
+  /* "fast_scboot/c/pytest_validator.pyx":40
  * 
  *     cdef np.ndarray[DOUBLE_t, ndim=1, mode="c"] _out2 = np.empty(n, dtype=DTYPE, order="C")
  *     cdef double* out2 = <double*>(np.PyArray_DATA(_out2))             # <<<<<<<<<<<<<<
@@ -2076,7 +2076,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   __pyx_v_out2 = ((double *)PyArray_DATA(((PyArrayObject *)__pyx_v__out2)));
 
-  /* "fast_scboot/c/pytest_validator.pyx":40
+  /* "fast_scboot/c/pytest_validator.pyx":42
  *     cdef double* out2 = <double*>(np.PyArray_DATA(_out2))
  * 
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -2088,7 +2088,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
 
-    /* "fast_scboot/c/pytest_validator.pyx":42
+    /* "fast_scboot/c/pytest_validator.pyx":44
  *     for i in range(n):
  * 
  *         cur_clust = a[i*p + p - 1]             # <<<<<<<<<<<<<<
@@ -2097,7 +2097,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
     __pyx_v_cur_clust = (__pyx_v_a[(((__pyx_v_i * __pyx_v_p) + __pyx_v_p) - 1)]);
 
-    /* "fast_scboot/c/pytest_validator.pyx":43
+    /* "fast_scboot/c/pytest_validator.pyx":45
  * 
  *         cur_clust = a[i*p + p - 1]
  *         cur_strat = a[i*p]             # <<<<<<<<<<<<<<
@@ -2106,7 +2106,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
     __pyx_v_cur_strat = (__pyx_v_a[(__pyx_v_i * __pyx_v_p)]);
 
-    /* "fast_scboot/c/pytest_validator.pyx":45
+    /* "fast_scboot/c/pytest_validator.pyx":47
  *         cur_strat = a[i*p]
  * 
  *         if (prev_clust != cur_clust) | (prev_strat != cur_strat):             # <<<<<<<<<<<<<<
@@ -2116,7 +2116,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
     __pyx_t_10 = (((__pyx_v_prev_clust != __pyx_v_cur_clust) | (__pyx_v_prev_strat != __pyx_v_cur_strat)) != 0);
     if (__pyx_t_10) {
 
-      /* "fast_scboot/c/pytest_validator.pyx":47
+      /* "fast_scboot/c/pytest_validator.pyx":49
  *         if (prev_clust != cur_clust) | (prev_strat != cur_strat):
  * 
  *             out[j] = a[(i-1)*p + 1]             # <<<<<<<<<<<<<<
@@ -2125,7 +2125,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       (__pyx_v_out[__pyx_v_j]) = (__pyx_v_a[(((__pyx_v_i - 1) * __pyx_v_p) + 1)]);
 
-      /* "fast_scboot/c/pytest_validator.pyx":48
+      /* "fast_scboot/c/pytest_validator.pyx":50
  * 
  *             out[j] = a[(i-1)*p + 1]
  *             out[j + 1] = clust_acc             # <<<<<<<<<<<<<<
@@ -2134,7 +2134,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       (__pyx_v_out[(__pyx_v_j + 1)]) = __pyx_v_clust_acc;
 
-      /* "fast_scboot/c/pytest_validator.pyx":49
+      /* "fast_scboot/c/pytest_validator.pyx":51
  *             out[j] = a[(i-1)*p + 1]
  *             out[j + 1] = clust_acc
  *             j += 2             # <<<<<<<<<<<<<<
@@ -2143,7 +2143,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       __pyx_v_j = (__pyx_v_j + 2);
 
-      /* "fast_scboot/c/pytest_validator.pyx":51
+      /* "fast_scboot/c/pytest_validator.pyx":53
  *             j += 2
  * 
  *             clust_acc = 1             # <<<<<<<<<<<<<<
@@ -2152,7 +2152,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       __pyx_v_clust_acc = 1.0;
 
-      /* "fast_scboot/c/pytest_validator.pyx":45
+      /* "fast_scboot/c/pytest_validator.pyx":47
  *         cur_strat = a[i*p]
  * 
  *         if (prev_clust != cur_clust) | (prev_strat != cur_strat):             # <<<<<<<<<<<<<<
@@ -2162,7 +2162,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
       goto __pyx_L5;
     }
 
-    /* "fast_scboot/c/pytest_validator.pyx":55
+    /* "fast_scboot/c/pytest_validator.pyx":57
  *         else:
  * 
  *             clust_acc += 1             # <<<<<<<<<<<<<<
@@ -2174,7 +2174,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
     }
     __pyx_L5:;
 
-    /* "fast_scboot/c/pytest_validator.pyx":57
+    /* "fast_scboot/c/pytest_validator.pyx":59
  *             clust_acc += 1
  * 
  *         if prev_strat != cur_strat:             # <<<<<<<<<<<<<<
@@ -2184,7 +2184,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
     __pyx_t_10 = ((__pyx_v_prev_strat != __pyx_v_cur_strat) != 0);
     if (__pyx_t_10) {
 
-      /* "fast_scboot/c/pytest_validator.pyx":59
+      /* "fast_scboot/c/pytest_validator.pyx":61
  *         if prev_strat != cur_strat:
  * 
  *             out2[k] = a[i*p - 1] + 1             # <<<<<<<<<<<<<<
@@ -2193,7 +2193,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       (__pyx_v_out2[__pyx_v_k]) = ((__pyx_v_a[((__pyx_v_i * __pyx_v_p) - 1)]) + 1.0);
 
-      /* "fast_scboot/c/pytest_validator.pyx":60
+      /* "fast_scboot/c/pytest_validator.pyx":62
  * 
  *             out2[k] = a[i*p - 1] + 1
  *             k += 1             # <<<<<<<<<<<<<<
@@ -2202,7 +2202,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
       __pyx_v_k = (__pyx_v_k + 1);
 
-      /* "fast_scboot/c/pytest_validator.pyx":57
+      /* "fast_scboot/c/pytest_validator.pyx":59
  *             clust_acc += 1
  * 
  *         if prev_strat != cur_strat:             # <<<<<<<<<<<<<<
@@ -2211,7 +2211,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
     }
 
-    /* "fast_scboot/c/pytest_validator.pyx":62
+    /* "fast_scboot/c/pytest_validator.pyx":64
  *             k += 1
  * 
  *         prev_clust = cur_clust             # <<<<<<<<<<<<<<
@@ -2220,7 +2220,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
     __pyx_v_prev_clust = __pyx_v_cur_clust;
 
-    /* "fast_scboot/c/pytest_validator.pyx":63
+    /* "fast_scboot/c/pytest_validator.pyx":65
  * 
  *         prev_clust = cur_clust
  *         prev_strat = cur_strat             # <<<<<<<<<<<<<<
@@ -2230,7 +2230,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
     __pyx_v_prev_strat = __pyx_v_cur_strat;
   }
 
-  /* "fast_scboot/c/pytest_validator.pyx":65
+  /* "fast_scboot/c/pytest_validator.pyx":67
  *         prev_strat = cur_strat
  * 
  *     out[j] = a[(i)*p + 1]             # <<<<<<<<<<<<<<
@@ -2239,7 +2239,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   (__pyx_v_out[__pyx_v_j]) = (__pyx_v_a[((__pyx_v_i * __pyx_v_p) + 1)]);
 
-  /* "fast_scboot/c/pytest_validator.pyx":66
+  /* "fast_scboot/c/pytest_validator.pyx":68
  * 
  *     out[j] = a[(i)*p + 1]
  *     out[j + 1] = clust_acc             # <<<<<<<<<<<<<<
@@ -2248,7 +2248,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   (__pyx_v_out[(__pyx_v_j + 1)]) = __pyx_v_clust_acc;
 
-  /* "fast_scboot/c/pytest_validator.pyx":68
+  /* "fast_scboot/c/pytest_validator.pyx":70
  *     out[j + 1] = clust_acc
  * 
  *     out2[k] = a[(i+1)*p - 1] + 1             # <<<<<<<<<<<<<<
@@ -2257,36 +2257,36 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
  */
   (__pyx_v_out2[__pyx_v_k]) = ((__pyx_v_a[(((__pyx_v_i + 1) * __pyx_v_p) - 1)]) + 1.0);
 
-  /* "fast_scboot/c/pytest_validator.pyx":70
+  /* "fast_scboot/c/pytest_validator.pyx":72
  *     out2[k] = a[(i+1)*p - 1] + 1
  * 
  *     return _out[0:int(j/2)+1], _out2[:k+1]             # <<<<<<<<<<<<<<
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_j / 2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_j / 2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PySlice_New(__pyx_int_0, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = PySlice_New(__pyx_int_0, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v__out), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v__out), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_k + 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_k + 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PySlice_New(Py_None, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = PySlice_New(Py_None, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v__out2), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v__out2), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -2298,7 +2298,7 @@ static PyObject *__pyx_pf_11fast_scboot_1c_16pytest_validator_validate_data(CYTH
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":17
+  /* "fast_scboot/c/pytest_validator.pyx":19
  * @wraparound(False)
  * @cdivision(True)
  * def validate_data(np.ndarray[DOUBLE_t, ndim=2] _a):             # <<<<<<<<<<<<<<
@@ -3439,7 +3439,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 42, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 945, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -3472,17 +3472,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "fast_scboot/c/pytest_validator.pyx":17
+  /* "fast_scboot/c/pytest_validator.pyx":19
  * @wraparound(False)
  * @cdivision(True)
  * def validate_data(np.ndarray[DOUBLE_t, ndim=2] _a):             # <<<<<<<<<<<<<<
  * 
  *     cdef int n = _a.shape[0]
  */
-  __pyx_tuple__3 = PyTuple_Pack(18, __pyx_n_s_a, __pyx_n_s_n, __pyx_n_s_p, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_k, __pyx_n_s_a_2, __pyx_n_s_strat, __pyx_n_s_clust, __pyx_n_s_cur_clust, __pyx_n_s_clust_acc, __pyx_n_s_prev_clust, __pyx_n_s_prev_strat, __pyx_n_s_out, __pyx_n_s_out_2, __pyx_n_s_out2, __pyx_n_s_out2_2, __pyx_n_s_cur_strat); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(18, __pyx_n_s_a, __pyx_n_s_n, __pyx_n_s_p, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_k, __pyx_n_s_a_2, __pyx_n_s_strat, __pyx_n_s_clust, __pyx_n_s_cur_clust, __pyx_n_s_clust_acc, __pyx_n_s_prev_clust, __pyx_n_s_prev_strat, __pyx_n_s_out, __pyx_n_s_out_2, __pyx_n_s_out2, __pyx_n_s_out2_2, __pyx_n_s_cur_strat); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_fast_scboot_c_pytest_validat, __pyx_n_s_validate_data, 17, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_fast_scboot_c_pytest_validat, __pyx_n_s_validate_data, 19, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3819,55 +3819,55 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "fast_scboot/c/pytest_validator.pyx":3
- * from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil
+ * from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
+ * 
  * cimport numpy as np
- * np.import_array()
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":5
- * import numpy as np
+  /* "fast_scboot/c/pytest_validator.pyx":7
  * cimport numpy as np
+ * 
  * np.import_array()             # <<<<<<<<<<<<<<
  * 
  * ctypedef np.npy_int32 STEP_t
  */
-  __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 7, __pyx_L1_error)
 
-  /* "fast_scboot/c/pytest_validator.pyx":11
+  /* "fast_scboot/c/pytest_validator.pyx":13
  * ctypedef np.npy_float64 DOUBLE_t
  * 
  * DTYPE = np.float64             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DTYPE, __pyx_t_3) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DTYPE, __pyx_t_3) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "fast_scboot/c/pytest_validator.pyx":17
+  /* "fast_scboot/c/pytest_validator.pyx":19
  * @wraparound(False)
  * @cdivision(True)
  * def validate_data(np.ndarray[DOUBLE_t, ndim=2] _a):             # <<<<<<<<<<<<<<
  * 
  *     cdef int n = _a.shape[0]
  */
-  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_11fast_scboot_1c_16pytest_validator_1validate_data, NULL, __pyx_n_s_fast_scboot_c_pytest_validator); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_11fast_scboot_1c_16pytest_validator_1validate_data, NULL, __pyx_n_s_fast_scboot_c_pytest_validator); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_validate_data, __pyx_t_3) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_validate_data, __pyx_t_3) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "fast_scboot/c/pytest_validator.pyx":1
- * from cython cimport boundscheck, wraparound, cdivision, nonecheck, nogil             # <<<<<<<<<<<<<<
+ * from cython cimport boundscheck, cdivision, nogil, nonecheck, wraparound             # <<<<<<<<<<<<<<
  * 
  * import numpy as np
  */

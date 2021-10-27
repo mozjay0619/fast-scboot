@@ -52,7 +52,7 @@ def inplace_fancy_indexer(np.ndarray[DOUBLE_t, ndim=2] _a,
         
         for j in range(k):  # Fill in the i-th row.
             
-            b[p*i + j] = a[k*idx[i] + j]
+            b[p*i + j] = a[p*idx[i] + j]
 
         b[p*i + j + 1] = c[i]
 
