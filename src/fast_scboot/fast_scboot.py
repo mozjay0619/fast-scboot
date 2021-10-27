@@ -77,6 +77,11 @@ class Sampler:
 
             data = self._create_auxiliary_columns_and_sort_data(data, stratify_columns, cluster_column)
 
+        # Reorder dataframe columns so cluster_column comes last.
+        cluster_column_arr = data[cluster_column]
+        data.drop(cluster_column, axis=1, inplace=True)
+        data[cluster_column] = cluster_column_arr
+
         # Reset index.
         data.reset_index(drop=True, inplace=True)
         self.data = data.copy(deep=False)
@@ -182,11 +187,6 @@ class Sampler:
         data["__temp_cluster_column__"] = (
             data["__temp_cluster_column__"].astype("category").cat.codes
         )
-
-        # Reorder dataframe columns so cluster_column comes last.
-        cluster_column_arr = data[cluster_column]
-        data.drop(cluster_column, axis=1, inplace=True)
-        data[cluster_column] = cluster_column_arr
 
         data = data.sort_values(
             by=["__temp_stratify_column__", "__temp_cluster_column__"]
